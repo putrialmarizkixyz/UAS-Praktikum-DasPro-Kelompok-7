@@ -8,12 +8,12 @@ string jenis[MAX];
 int jumlah[MAX];
 int totalTransaksi = 0;
 
-void setor(int saldo);
-void tarik(int saldo);
-void transfer(int saldo);
+void setor(int &saldo);
+void tarik(int &saldo);
+void transfer(int &saldo);
 void cekSaldo(int saldo);
 void riwayat();
-void statusKeuangan(int saldo); 
+void statusKeuangan(int saldo);
 
 int main() {
     int saldo = 0;
@@ -36,20 +36,20 @@ int main() {
 
         switch (pilihan) {
             case 1:
-            	cekSaldo(saldo);
-            	break;
+                cekSaldo(saldo);
+                break;
             case 2:
-            	setor(saldo);
-            	break;
+                setor(saldo);
+                break;
             case 3:
-            	tarik(saldo);
-            	break;
+                tarik(saldo);
+                break;
             case 4:
-            	transfer(saldo);
-            	break;
+                transfer(saldo);
+                break;
             case 5:
-            	riwayat();
-            	break;
+                riwayat();
+                break;
             case 6:
                 cout << "Program selesai. Terima kasih!\n";
                 break;
@@ -81,7 +81,7 @@ void cekSaldo(int saldo) {
     statusKeuangan(saldo);
 }
 
-void setor(int saldo) {
+void setor(int &saldo) {
     int tambah;
     int saldoSebelum = saldo;
 
@@ -102,7 +102,7 @@ void setor(int saldo) {
     statusKeuangan(saldo);
 }
 
-void tarik(int saldo) {
+void tarik(int &saldo) {
     int ambil;
     int saldoSebelum = saldo;
 
@@ -128,7 +128,7 @@ void tarik(int saldo) {
     statusKeuangan(saldo);
 }
 
-void transfer(int saldo) {
+void transfer(int &saldo) {
     int nominal;
     string rek;
     int saldoSebelum = saldo;
@@ -165,10 +165,11 @@ void riwayat() {
     if (totalTransaksi == 0) {
         cout << "Belum ada transaksi.\n";
         return;
-        
     }
 
     for (int i = 0; i < totalTransaksi; i++) {
         cout << i + 1 << ". " << jenis[i] << " - Rp " << jumlah[i] << endl;
     }
 }
+
+
